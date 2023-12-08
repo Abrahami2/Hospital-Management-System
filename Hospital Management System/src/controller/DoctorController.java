@@ -4,15 +4,31 @@ import model.Doctor;
 
 import java.util.Vector;
 
+/**
+ * DoctorController class manages doctor data.
+ * This class is responsible for handling operations such as adding,
+ * retrieving, updating, and deleting doctor information.
+ * It follows the Singleton design pattern to ensure only one instance exists.
+ */
 public class DoctorController implements UpdateInterface{
 
     static DoctorController doctorController;
     Vector<Doctor> doctors;
 
+    /**
+     * Constructor for DoctorController.
+     * Initializes a new Vector to store doctors.
+     */
     public DoctorController(){
 doctors=new Vector<>();
     }
 
+    /**
+     * Retrieves the single instance of DoctorController.
+     * If the instance doesn't exist, it is created.
+     *
+     * @return The single instance of DoctorController.
+     */
     public static DoctorController getInstance(){
         if(doctorController==null){
             doctorController=new DoctorController();
@@ -20,11 +36,21 @@ doctors=new Vector<>();
         return doctorController;
     }
 
-
+    /**
+     * Adds a new Doctor to the list.
+     *
+     * @param doctor The Doctor object to be added.
+     */
     public void addDoctor(Doctor doctor){
         doctors.add(doctor);
     }
 
+    /**
+     * Retrieves all doctors as a Vector of Vectors containing strings.
+     * Each inner vector represents a doctor with their details such as ID, name, address, etc.
+     *
+     * @return A Vector of Vectors containing doctor data.
+     */
     public Vector<Vector<String>> getDoctors(){
         Vector<Vector<String>> patientsData=new Vector<Vector<String>>();
         for(Doctor p : doctors){
@@ -41,6 +67,11 @@ doctors=new Vector<>();
         return patientsData;
     }
 
+    /**
+     * Retrieves the column names for doctor data.
+     *
+     * @return A Vector of Strings representing column names.
+     */
     public Vector<String> getColumns(){
         Vector<String> columns=new Vector<>();
         columns.add("ID");
@@ -53,6 +84,14 @@ doctors=new Vector<>();
         return columns;
     }
 
+
+    /**
+     * Updates a doctor's information based on the given row and column.
+     *
+     * @param row The row number in the data table.
+     * @param col The column number in the data table.
+     * @param value The new value to be updated.
+     */
     public void update(int row,int col,String value){
         switch (col){
             case 0:
@@ -83,10 +122,18 @@ doctors=new Vector<>();
 
     }
 
+    /**
+     * Deletes a doctor from the list based on the row index.
+     *
+     * @param row The row number in the data table to be deleted.
+     */
     public void delete(int row){
         doctors.remove(row);
     }
 
+    /**
+     * Populates the doctor list with dummy data for testing.
+     */
     public void populateDummyDoctors(){
         Doctor d=new Doctor("Haider","LHR","030112345646",1,"Child",25,5000);
         Doctor d1=new Doctor("Haider","LHR","030112345646",1,"Child",25,5000);

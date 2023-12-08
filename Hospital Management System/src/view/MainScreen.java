@@ -13,6 +13,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * MainScreen class creates and manages the main GUI for the hospital management system.
+ * It provides options to add and view patients, doctors, and appointments.
+ */
 public class MainScreen {
 
     private JFrame frame;
@@ -20,6 +24,13 @@ public class MainScreen {
     private PatientController patientController;
     private AppointmentController appointmentController;
 
+    /**
+     * Constructor to initialize the MainScreen with references to DoctorController, PatientController, and AppointmentController.
+     *
+     * @param refgDoctor       Reference to the DoctorController.
+     * @param refgPatient      Reference to the PatientController.
+     * @param refgAppointment  Reference to the AppointmentController.
+     */
     public MainScreen(DoctorController refgDoctor, PatientController refgPatient, AppointmentController refgAppointment) {
         doctorController=refgDoctor;
         patientController=refgPatient;
@@ -29,6 +40,10 @@ public class MainScreen {
 
     }
 
+    /**
+     * Initializes the graphical user interface for the main screen.
+     * Sets up the layout, buttons, and action listeners.
+     */
     private void initGUI() {
 
         frame = new JFrame("Hospital Management System");
@@ -121,11 +136,16 @@ public class MainScreen {
 
     }
 
+    /**
+     * Makes the frame visible, thereby displaying the main screen.
+     */
     public void display(){
         frame.setVisible(true);
     }
 
-
+    /**
+     * Opens the screen for adding a new patient.
+     */
     private void openAddPatientScreen() {
         JFrame addPatientFrame = new JFrame("Add Patient");
 
@@ -206,6 +226,9 @@ public class MainScreen {
         addPatientFrame.setVisible(true);
     }
 
+    /**
+     * Opens the screen for adding a new doctor.
+     */
     private void openAddDoctorScreen() {
         JFrame addDoctorFrame = new JFrame("Add Doctor");
 
@@ -311,6 +334,9 @@ public class MainScreen {
         addDoctorFrame.setVisible(true);
     }
 
+    /**
+     * Opens the screen for making a new appointment.
+     */
     private void openAddAppointmentScreen() {
         JFrame addAppointmentFrame = new JFrame("Make Appointment");
 

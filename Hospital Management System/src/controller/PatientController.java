@@ -4,16 +4,32 @@ import model.Patient;
 
 import java.util.Vector;
 
+/**
+ * PatientController class manages patient data.
+ * This class is responsible for handling operations such as adding,
+ * retrieving, updating, and deleting patient information.
+ * It follows the Singleton design pattern to ensure only one instance exists.
+ */
 public class PatientController implements UpdateInterface {
 
     Vector<Patient> patients;
     static PatientController patientController;
 
+    /**
+     * Constructor for PatientController.
+     * Initializes a new Vector to store patients.
+     */
     public PatientController() {
         patients = new Vector<>();
         //populateDummyPatients();
     }
 
+    /**
+     * Retrieves the single instance of PatientController.
+     * If the instance doesn't exist, it is created.
+     *
+     * @return The single instance of PatientController.
+     */
     public static PatientController getInstance() {
         if (patientController == null) {
             patientController = new PatientController();
@@ -21,10 +37,21 @@ public class PatientController implements UpdateInterface {
         return patientController;
     }
 
+    /**
+     * Adds a new Patient to the list.
+     *
+     * @param patient The Patient object to be added.
+     */
     public void setPatients(Patient patient) {
         patients.add(patient);
     }
 
+    /**
+     * Retrieves all patients as a Vector of Vectors containing strings.
+     * Each inner vector represents a patient with their details such as ID, name, disease, etc.
+     *
+     * @return A Vector of Vectors containing patient data.
+     */
     public Vector<Vector<String>> getPatients() {
         Vector<Vector<String>> patientsData = new Vector<Vector<String>>();
         for (Patient p : patients) {
@@ -39,6 +66,11 @@ public class PatientController implements UpdateInterface {
         return patientsData;
     }
 
+    /**
+     * Retrieves the column names for patient data.
+     *
+     * @return A Vector of Strings representing column names.
+     */
     public Vector<String> getCoulmns() {
         Vector<String> columns = new Vector<>();
         columns.add("ID");
@@ -49,7 +81,9 @@ public class PatientController implements UpdateInterface {
         return columns;
     }
 
-
+    /**
+     * Populates the patient list with dummy data for testing.
+     */
     public void populateDummyPatients() {
         Patient p = new Patient(1, "Aslam", "Lahore", "03012345678", "Fever");
         Patient p1 = new Patient(2, "Aslam", "Lahore", "03012345678", "Fever");
@@ -66,7 +100,13 @@ public class PatientController implements UpdateInterface {
         patients.add(p5);
     }
 
-
+    /**
+     * Updates a patient's information based on the given row and column.
+     *
+     * @param row The row number in the data table.
+     * @param col The column number in the data table.
+     * @param value The new value to be updated.
+     */
     public void update(int row, int col, String value) {
         switch (col) {
             case 0:
@@ -91,6 +131,11 @@ public class PatientController implements UpdateInterface {
 
     }
 
+    /**
+     * Deletes a patient from the list based on the row index.
+     *
+     * @param row The row number in the data table to be deleted.
+     */
     public void delete(int row){
         patients.remove(row);
     }

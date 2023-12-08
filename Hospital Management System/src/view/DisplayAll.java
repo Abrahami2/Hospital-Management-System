@@ -11,6 +11,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
+/**
+ * DisplayAll class is responsible for creating and displaying a GUI for showing a table of data.
+ * This class creates a JFrame containing a JTable that is populated with the provided data and column names.
+ * It also handles the actions for updating and deleting rows from the table.
+ */
 public class DisplayAll {
 
     JFrame frame;
@@ -25,6 +30,15 @@ public class DisplayAll {
 
     UpdateInterface refgController;
 
+    /**
+     * Constructor to initialize the DisplayAll GUI with a title, columns, data, and a reference to the UpdateInterface.
+     *
+     * @param title          The title of the window.
+     * @param columns        The column names for the table.
+     * @param d              The data to be displayed in the table.
+     * @param refgController The reference to the UpdateInterface for handling update and delete actions.
+     */
+
     public DisplayAll(String title, Vector<String> columns, Vector<Vector<String>> d,UpdateInterface refgController){
         this.title=title;
         this.coulmnNames=columns;
@@ -34,6 +48,9 @@ public class DisplayAll {
         initGUI();
     }
 
+    /**
+     * Initializes the graphical user interface components and layout.
+     */
     void initGUI(){
         frame=new JFrame("Hospital Management System");
         frame.setLayout(new BorderLayout());
@@ -79,7 +96,9 @@ public class DisplayAll {
     }
 
 
-
+    /**
+     * Makes the frame visible, thereby displaying the GUI.
+     */
     public void display(){
         frame.setVisible(true);
     }

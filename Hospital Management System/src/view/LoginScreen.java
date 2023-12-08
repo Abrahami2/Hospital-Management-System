@@ -6,6 +6,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
 
+/**
+ * LoginScreen class creates and manages the GUI for the login screen.
+ * It includes fields for username and password entry, and a button to submit the login information.
+ * On successful login, it transitions to the MainScreen.
+ */
 public class LoginScreen {
 
     JFrame frame;
@@ -15,11 +20,20 @@ public class LoginScreen {
     JButton loginButton;
     MainScreen mainScreen;
 
+    /**
+     * Constructor to initialize the LoginScreen with a reference to the MainScreen.
+     *
+     * @param mainScreen The MainScreen to be displayed after successful login.
+     */
     public LoginScreen(MainScreen mainScreen){
         this.mainScreen=mainScreen;
         initGUI();
     }
 
+    /**
+     * Initializes the graphical user interface for the login screen.
+     * Sets up the layout, fields, labels, and buttons, along with their functionalities.
+     */
     public void initGUI() {
         frame=new JFrame("Login Screen");
         frame.setLayout(new FlowLayout());
