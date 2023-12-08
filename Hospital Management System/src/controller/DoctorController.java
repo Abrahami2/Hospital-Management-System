@@ -1,10 +1,7 @@
 package controller;
 
 import model.Doctor;
-import model.Patient;
 
-import javax.print.Doc;
-import java.util.Base64;
 import java.util.Vector;
 
 public class DoctorController implements UpdateInterface{
@@ -44,7 +41,7 @@ doctors=new Vector<>();
         return patientsData;
     }
 
-    public Vector<String> getCoulmns(){
+    public Vector<String> getColumns(){
         Vector<String> columns=new Vector<>();
         columns.add("ID");
         columns.add("Name");

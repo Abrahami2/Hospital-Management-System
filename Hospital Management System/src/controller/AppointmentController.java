@@ -37,7 +37,7 @@ public class AppointmentController implements UpdateInterface{
     }
 
 
-    public Vector<String> getCoulmns() {
+    public Vector<String> getColumns() {
         Vector<String> columns = new Vector<>();
         columns.add("Doctor's ID");
         columns.add("Patient's ID");

@@ -12,11 +12,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Vector;
-import java.util.logging.SimpleFormatter;
 
 public class MainScreen {
 
@@ -93,7 +88,7 @@ public class MainScreen {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                DisplayAll displayAll=new DisplayAll("All Doctors's Info",MainScreen.this.doctorController.getCoulmns(),MainScreen.this.doctorController.getDoctors(),doctorController);
+                DisplayAll displayAll=new DisplayAll("All Doctors's Info",MainScreen.this.doctorController.getColumns(),MainScreen.this.doctorController.getDoctors(),doctorController);
                 displayAll.display();
             }
         });
@@ -102,7 +97,7 @@ public class MainScreen {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                DisplayAll displayAll=new DisplayAll("All Appointment's Info",MainScreen.this.appointmentController.getCoulmns(),MainScreen.this.appointmentController.getAppointments(),appointmentController);
+                DisplayAll displayAll=new DisplayAll("All Appointment's Info",MainScreen.this.appointmentController.getColumns(),MainScreen.this.appointmentController.getAppointments(),appointmentController);
                 displayAll.display();
             }
         });
