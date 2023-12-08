@@ -136,6 +136,9 @@ public class MainScreen {
 
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
+
+        gbc.fill = GridBagConstraints.HORIZONTAL; // Make components expand horizontally
+        gbc.weightx = 0.5;  // Assign some horizontal weight
         gbc.insets = new Insets(5, 5, 5, 5);
 
         JTextField txtname = new JTextField(15);
@@ -342,15 +345,46 @@ public class MainScreen {
         gbc.gridx = 1;
         panel.add(txtPatientsId, gbc);
 
+        // Date selection combo boxes
+        String[] days = new String[31];
+        for (int i = 1; i <= 31; i++) {
+            days[i - 1] = Integer.toString(i);
+        }
+        String[] months = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
+        String[] years = new String[10]; // for example, from 2023 to 2032
+        for (int i = 0; i < 10; i++) {
+            years[i] = Integer.toString(2023 + i);
+        }
+
+        JComboBox<String> dayComboBox = new JComboBox<>(days);
+        JComboBox<String> monthComboBox = new JComboBox<>(months);
+        JComboBox<String> yearComboBox = new JComboBox<>(years);
+
+        JPanel datePanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 5, 0));
+        datePanel.add(dayComboBox);
+        datePanel.add(monthComboBox);
+        datePanel.add(yearComboBox);
+
         gbc.gridx = 0;
-        gbc.gridy = 2;
-        panel.add(new JLabel("Patient Name : "), gbc);
+        gbc.gridy = 3;
+        panel.add(new JLabel("Select Date (DD/MM/YYYY)"), gbc);
 
         gbc.gridx = 1;
-        panel.add(lblName, gbc);
+        gbc.gridwidth = 3; // Span across three columns
+        panel.add(datePanel, gbc);
+
+        // Reset gridwidth for subsequent components
+        gbc.gridwidth = 1;
 
         gbc.gridx = 0;
         gbc.gridy = 4;
+        panel.add(new JLabel("Patient Name : "), gbc);
+
+        gbc.gridx = 3;
+        panel.add(lblName, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 5;
         panel.add(new JLabel("Doctor's fee : "), gbc);
 
         gbc.gridx = 1;
@@ -358,12 +392,12 @@ public class MainScreen {
 
         JButton btnAdd=new JButton("Add");
         gbc.gridx = 1;
-        gbc.gridy = 6;
+        gbc.gridy = 7;
         panel.add(btnAdd, gbc);
 
 
         gbc.gridx = 1;
-        gbc.gridy = 7;
+        gbc.gridy = 8;
         panel.add(lblNotifi, gbc);
 
         addAppointmentFrame.add(panel);
@@ -371,9 +405,16 @@ public class MainScreen {
         btnAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SimpleDateFormat simpleDateFormat= new SimpleDateFormat("dd/MM/yyyy");
-                Appointment appointment=new Appointment(Integer.valueOf(txtDoctorId.getText()),
-                        Integer.valueOf(txtPatientsId.getText()),simpleDateFormat.format(Date.valueOf(LocalDate.now())) );
+                String selectedDay = (String) dayComboBox.getSelectedItem();
+                String selectedMonth = (String) monthComboBox.getSelectedItem();
+                String selectedYear = (String) yearComboBox.getSelectedItem();
+
+                String selectedDate = selectedDay + "/" + selectedMonth + "/" + selectedYear;
+
+                // Assuming txtDoctorId and txtPatientsId are already defined as JTextField
+                int doctorId = Integer.parseInt(txtDoctorId.getText());
+                int patientId = Integer.parseInt(txtPatientsId.getText());
+                Appointment appointment = new Appointment(doctorId, patientId, selectedDate);
 
                 appointmentController.addAppointment(appointment);
                 txtPatientsId.setText("");
@@ -385,7 +426,7 @@ public class MainScreen {
 
 
         // Add your code to design and display the "Add Appointment" screen here
-        addAppointmentFrame.setSize(500, 600);
+        addAppointmentFrame.setSize(600, 600);
         addAppointmentFrame.setVisible(true);
         addAppointmentFrame.setLocationRelativeTo(null);
     }
