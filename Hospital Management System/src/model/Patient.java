@@ -10,9 +10,10 @@ public class Patient extends Person {
     int id;         // Patient's ID
     String disease; // Patient's disease or condition
     /**
-     * Gets the patient's disease or condition.
+     * Constructor to initialize patient information with ID and disease.
      *
-     * @return The disease or condition of the patient.
+     * @param id      The patient's ID.
+     * @param disease The patient's disease or condition.
      */
     public Patient(int id, String disease) {
         this.id = id;
